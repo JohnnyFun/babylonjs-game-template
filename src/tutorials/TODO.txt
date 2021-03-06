@@ -1,0 +1,50 @@
+- Animations
+  - smooth transitions
+  - best practices
+    - performance considerations
+  - character design and rigging (https://doc.babylonjs.com/divingDeeper/animation/animatedCharacter)
+    - see if their rigging tool is faster than blender?
+- Input
+  - smooth controls 
+    - 3rd person
+    - VR with joy stick
+- Materials
+  - how to wrap meshes well with materials (color and texture)
+  - blending multiple to get cool textured colored effect
+  - get better idea when to use blender vs babylonjs
+  - how to pack meshes and textures in glb files to load into games
+    - separately?
+- Mesh
+  - Mesh Transformations
+    - sequencing rotations
+    - rotation quaternions
+  - Interactions
+    - Mesh intersections
+- Particles
+  - smoke, water droplets, fire, etc.
+- Blender to babylonjs exporter!
+  - https://doc.babylonjs.com/extensions/Exporters/Blender
+    - spits out html file to view in babylonjs
+
+- Game ideas
+  - maze boy (make work outside of VR too)
+    - generate mazes from json file
+      - json file should be x,y coordinates to make lines and then extrude them upward!
+      - make editor to draw a maze and then go play it!
+      - save maze to local storage so can re-visit past ones!
+    - 3rd person character
+      - just start out with "dude" or cat since they have nice smooth walking animations
+      - hook up to wasd and arrow keys with smooth rotation like in "simple-game" thing
+      - hook up collisions with the maze mesh so can't walk through the walls
+    - put your fountain in next to the exit! and your bunny!! and a dick statue!!
+  - VR
+    - spacecraft flyer
+      - make cool spacecraft interior to sit in
+      - have a steering yoke to grab and turn to guide ship around asteroids
+    - tank turret and/or machine gun
+      - joy stick to drive tank
+      - other joy stick to turn turret separately
+      - squeeze triggers near machine gun to take hold of it
+        - right trigger to shoot it
+      - left trigger to shoot main gun
+    
