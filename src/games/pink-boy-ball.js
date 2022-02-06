@@ -75,7 +75,7 @@ function addGround() {
 }
 
 async function addCharacter() {
-  character = new MeshBuilder.CreateBox('character', { height: 4, width: 1, depth: 1 }, scene)
+  character = new MeshBuilder.CreateBox('character', { height: 4, width: 1.5, depth: 2.2 }, scene)
   character.visibility = 0 // .5 // for debugging, so can see what the physics imposter is actually using to do physics on.
   const result = await SceneLoader.ImportMeshAsync('', '/scenes/pinkboy/', 'pinkboy.glb', scene)
   const pinkBoy = result.meshes[0]
@@ -83,11 +83,12 @@ async function addCharacter() {
   pinkBoy.position.y = -2
 
   character.name = 'pinkboy'
+  // TODO: seems like characters should maybe not have physics imposter, but instead use basic collision detection instead?
   const characterImposter = new PhysicsImpostor(character, PhysicsImpostor.BoxImpostor, { mass: 1, friction: 0.5, restitution: 0 }, scene)
   const characterSpeed = .2
   const characterRotationSpeed = .05
   character.position.z = -45
-  character.position.y = 10
+  character.position.y = 1
   const idle = scene.getAnimationGroupByName('Idle')
   const run = scene.getAnimationGroupByName('Run')
   let animating = false
@@ -151,5 +152,6 @@ function addCourse() {
   }, scene)
   ramp.parent = course
   ramp.material = rampMaterial
+  ramp.checkCollisions = true
   course.position.z = 0
 }

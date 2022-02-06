@@ -1,8 +1,11 @@
 import '@babylonjs/core/Debug/debugLayer'
 import '@babylonjs/inspector'
 
-import { Engine } from '@babylonjs/core'
-import game from './games/pink-boy-ball'
+import { ArcRotateCamera, Engine, Vector3 } from '@babylonjs/core'
+
+import game from './games/spider-box-third-person'
+
+// import game from './games/pink-boy-ball'
 
 // import game from './games/vrTank'
 // import game from './games/spaceboy'
@@ -17,6 +20,7 @@ import game from './games/pink-boy-ball'
 let canvas
 let engine
 let scene
+let debugCamera
 main()
 
 async function main() {
@@ -47,8 +51,19 @@ function enableDebugTools(enabledByDefault) {
   window.addEventListener('keydown', ev => {
     // Shift+Ctrl+Alt+I to turn on debug inspector controls
     if (ev.shiftKey && ev.ctrlKey && ev.altKey && ev.key === 'I') {
-      if (scene.debugLayer.isVisible()) scene.debugLayer.hide()
-      else scene.debugLayer.show()
+      if (scene.debugLayer.isVisible()) {
+        scene.debugLayer.hide()
+        debugCamera?.dispose()
+      } else {
+        scene.debugLayer.show()
+        addDebugCamera()
+      }
     }
   })
+}
+
+function addDebugCamera() {
+  debugCamera = new ArcRotateCamera('camera', -1.925, 1.241, 29, new Vector3(), scene)
+  debugCamera.attachControl(canvas, true)
+  scene.activeCamera = debugCamera
 }
