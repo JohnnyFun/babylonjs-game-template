@@ -1,23 +1,19 @@
-## Plot
+## To make a new game
 
-You are Dirtball. A highly-trained ball of sludge and spit on his first mission.
+- copy `newGameTemplate.js` into games folder, rename to the name of your game
+- import that from `app.js` accordingly...
+- npm start
 
-Play the game here: [https://johnschottler.com/projects/maze-boy/index.html](https://johnschottler.com/projects/maze-boy/index.html)
+## To deploy a game
 
-![game-play](./gameplay.jpg)
-
-## Tech stuff
-
-- [babylonjs](https://www.babylonjs.com/)
-    - game engine
-        - rendering meshes and textures
-        - lighting, shadows
-        - keyboard control helpers
-- blender
-    - modelling
-
-## Running locally
-
-- `npm i`
-- `npm start`
-- open http://localhost:8080/
+- npm run build
+    - with debug panel off by default. this will build a minimized bundle.js
+- Then copy the index.html and bundle.js into C:\dev\johnschottlercom\src\projects\[project-name]
+- Then copy any textures you're using into C:\dev\johnschottlercom\src\textures   
+  - johnschottler.com copies src/textures and src/images with webpack into the dir that it serves from
+- Run johnschottlercom locally
+  - `cd c:\dev\johnschottlercom && npm start` -- open https://localhost:8080
+- Edit to add link to project on home page
+- Stage/commit changes
+- push changes (should work from devbeast since you have your ssh on devbeast in github yay)
+- netlify will deploy your change automatically

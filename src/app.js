@@ -2,14 +2,17 @@ import '@babylonjs/core/Debug/debugLayer'
 import '@babylonjs/inspector'
 
 import { Engine } from '@babylonjs/core'
-// import game from './games/weinerboy'
+import game from './games/pink-boy-ball'
+
+// import game from './games/vrTank'
+// import game from './games/spaceboy'
+// import game from './games/vrShooter'
 // import game from './games/mazeboy'
-import game from './games/vrShooter'
+// import game from './games/weinerboy'
 
-
-// import divingDeeperAnimation from './tutorials/divingDeeperAnimation'
 
 // import gettingStartedScene from './tutorials/gettingStartedScene'
+// import divingDeeperAnimation from './tutorials/divingDeeperAnimation'
 
 let canvas
 let engine
@@ -35,7 +38,7 @@ async function setScene(sceneBuilder) {
   const newScene = await sceneBuilder(engine, canvas)
   scene?.dispose()
   scene = newScene
-  enableDebugTools(false)
+  enableDebugTools(true)
 }
 
 function enableDebugTools(enabledByDefault) {

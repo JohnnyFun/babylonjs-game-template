@@ -1,3 +1,43 @@
+- rubik's cube
+  - animate it, send actions to control it
+  - learn to beat it with reinforcement algorithm
+
+- space ship cockpit game
+  - travel through boulder field and avoid hitting shit
+  - game play
+    - VR view from inside cockpit, but make it work outside VR too with keyboard controls
+    - game loads, incoming mission..."Hey...can you bring the spaceship over here? Try not to hit anything on the way over though. It's...pretty expensive. Also watch your fuel level--it's pretty low and if you run out of fuel...yeah, just don't run out of fuel."
+    - if hit anything, FAIL: "Dude. I told you not to hit anything. Then you hit something."
+    - if run out of fuel, FAIL: "Why aren't you moving anymore...oh...did you run out of fuel? [disgusted sigh...] Son of a...ok"
+  - design notes
+    - be able to see clearly that you're in a big fucking spaceship from inside the cockpit
+    - make ship as simple as possible--focus on game dynamics initially, THEN add details/textures/bumpmaps/lighting/etc to make it look cooler
+  - spaceship interior notes  
+    - nice-to-have: show speed in x,y,z directions
+    - nice-to-have: grab the yoke in VR. push forward, nose down. pull back, nose up. turn left, rotate on z left. turn right...
+                    right trigger throttle
+                      throttle does an impulse to move the ship like in dirtball (and how a thrust would actually work)
+                      no gravity vector
+                    alerons too to tilt down/up in a turn
+
+  - environment
+    - space rocks that you need to avoid
+      - add physics collisions (simple box imposters for rocks and spaceship)
+    - skybox of starts and maybe a nearby planet
+
+- Tractor
+  - make it steer and follow the path of its tires. put yourself in cab, make it VR!
+    - same general premise could be done for spaceship cockpit!
+
+- Make the wand character that Tim made a while back
+  - shape and hair
+  - then animate it with mixamo to walk and jump (could just show videos of it animating on mixamo, dancing, running, etc)
+  
+- AR
+  - use the real world as your game arena!!
+  - run through the forest on mountains in real life shooting zombies!
+  - productivity HUD-type stuff
+    - show heart rate or just time of day
 - Animations
   - smooth transitions
   - best practices
