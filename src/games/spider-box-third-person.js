@@ -70,7 +70,7 @@ function addCharacter() {
   character.physicsImpostor = new PhysicsImpostor(character, PhysicsImpostor.BoxImpostor, {
     mass: .1,
     restitution: .9,
-    friction: 0.1,
+    friction: 1,
   })
   // character.checkCollisions = true
   character.rotationQuaternion = Quaternion.RotationAxis(Axis.Y, 90)
@@ -83,14 +83,13 @@ function addCharacter() {
     if (e.event.button === 0 && e.pickInfo.hit && e.pickInfo.pickedPoint) createWebFromCharacterToPointOnMesh(e.pickInfo.pickedPoint)
   }, PointerEventTypes.POINTERDOWN)
 
-  // const camera = new FollowCamera('camera', new Vector3(0, 2, 0), scene)
-  // camera.rotationOffset = 180
-  // // camera.noRotationConstraint = true
-  
-  // camera.lockedTarget = character
-  // // camera.rotation
-  // camera.cameraAcceleration = .03 // how quickly to accelerate to the "goal" position
-  // camera.maxCameraSpeed = 10 // speed at which acceleration is halted
+  const camera = new FollowCamera('camera', new Vector3(0, 2, 0), scene)
+  camera.rotationOffset = 180
+  camera.noRotationConstraint = true  
+  camera.lockedTarget = character
+  camera.cameraAcceleration = .03 // how quickly to accelerate to the "goal" position
+  camera.maxCameraSpeed = 10 // speed at which acceleration is halted
+  // camera.attachControl(canvas, true)
 
   // const camera = new UniversalCamera('camera', new Vector3(0, 2, 0), scene)
   // camera.position = new Vector3(character.position.x, character.position.y, character.position.z - 20)
@@ -100,17 +99,18 @@ function addCharacter() {
   // // camera.fov = 0.47350045992678597
   // // character.parent = camera
 
-  const camera = new ArcRotateCamera('camera', 0, 0, 10, character.position, scene)
-  camera.attachControl(canvas, true)
-  camera.lockedTarget = character
+  // const camera = new ArcRotateCamera('camera', 0, 0, 10, character.position, scene)
+  // camera.attachControl(canvas, true)
+  // camera.lockedTarget = character
 
   const characterSpeed = .2
   const characterRotationSpeed = .02
-  const characterJumpHeight = .1
+  const characterJumpHeight = .3
   scene.onBeforeRenderObservable.add(() => {
     if (inputMap['w']) {
       character.moveWithCollisions(character.forward.scaleInPlace(characterSpeed))
       // camedwra.position.addInPlace(camera.getDirection(Vector3.Forward()));
+      // character.physicsImpostor.applyImpulse(camera.getDirection(Vector3.Forward()).scale(characterSpeed*.01), Vector3.Zero())
     }
     if (inputMap['s']) {
       character.rotate(Axis.Y, -characterRotationSpeed) // todo: turn around animation instead
@@ -169,7 +169,6 @@ function addCity() {
   const city = new TransformNode('city', scene)
   addGround(city)
   addBuildings(city)
-  addFloatingPlatform(city)
 }
 
 function addGround() {
@@ -182,7 +181,7 @@ function addGround() {
   ground.physicsImpostor = new PhysicsImpostor(ground, PhysicsImpostor.BoxImpostor, {
     mass: 0,
     restitution: .2,
-    friction: .9,
+    friction: 1,
   })
   ground.material = new StandardMaterial('groundMat', scene)
   ground.material.diffuseColor = new Color3.FromHexString('#707370')
@@ -209,6 +208,24 @@ function addBuildings(city) {
     building.material.diffuseColor = new Color3.FromHexString("#8CC6DB")
     building.parent = city
     buildings.push(building)
+
+    // platforms for now...
+    const platform = MeshBuilder.CreateBox('platform', {
+      width: 10,
+      depth: 10,
+      height: 5,
+    }, scene)
+    platform.position.y = buildingHeight + 10
+    platform.position.x = (i - (numBuildings / 2)) * 20
+    platform.position.z = 0
+    platform.physicsImpostor = new PhysicsImpostor(platform, PhysicsImpostor.BoxImpostor, {
+      mass: 0,
+      restitution: .2,
+      friction: 1,
+    })
+    platform.material = new StandardMaterial('platformMat', scene)
+    platform.material.diffuseColor = new Color3.FromHexString('#8CC6DB')
+    platform.parent = city
   }
 }
 
@@ -228,23 +245,4 @@ function clearAllWebs() {
     web.dispose()
   })
   webs = []
-}
-
-function addFloatingPlatform(city) {
-  const platform = MeshBuilder.CreateBox('platform', {
-    width: 10,
-    depth: 10,
-    height: 5,
-  }, scene)
-  platform.position.y = buildingHeight + 10
-  platform.position.x = -170
-  platform.position.z = 0
-  platform.physicsImpostor = new PhysicsImpostor(platform, PhysicsImpostor.BoxImpostor, {
-    mass: 0,
-    restitution: .2,
-    friction: .9,
-  })
-  platform.material = new StandardMaterial('platformMat', scene)
-  platform.material.diffuseColor = new Color3.FromHexString('#8CC6DB')
-  platform.parent = city
 }

@@ -3,19 +3,25 @@ import '@babylonjs/inspector'
 
 import { ArcRotateCamera, Engine, Vector3 } from '@babylonjs/core'
 
-import game from './games/spider-box-third-person'
+import game from './games/vrTank'
+
+// import game from './games/spider-box-third-person'
+
+// import game from './tutorials/gettingStartedScene'
+
+
 
 // import game from './games/pink-boy-ball'
 
-// import game from './games/vrTank'
+
 // import game from './games/spaceboy'
 // import game from './games/vrShooter'
 // import game from './games/mazeboy'
 // import game from './games/weinerboy'
 
 
-// import gettingStartedScene from './tutorials/gettingStartedScene'
-// import divingDeeperAnimation from './tutorials/divingDeeperAnimation'
+
+// import game from './tutorials/divingDeeperAnimation'
 
 let canvas
 let engine
